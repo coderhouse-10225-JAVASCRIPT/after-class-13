@@ -1,4 +1,7 @@
 ///////////////////////////////
+import Carrito from "../model/carrito.js";
+import Producto from "../model/producto.js";
+
 /// Coder cartel
 $("body").prepend('<p class="titulo">Coder House </p>');
 
@@ -136,9 +139,41 @@ function sendChatText(evento) {
 
 }
 
+let shopCart = new Carrito();
+
+
+
 $(document).ready(() => {
     $(".btnProducto").click((e) => {
-        console.log(e.target);
+
+        var myCarrito = [] // Que pasa si en lugar de usar un array uso objeto carrito?
+
+        let storedCarrito = sessionStorage.getItem("carrito");
+
+        if (storedCarrito != null) {
+            // primero cargo como array
+
+            let tempMyCarrito = JSON.parse(storedCarrito); // Estoy un array de ojbetos que NO son Producto
+
+            for (const producto of tempMyCarrito) {
+                let loadedProduct = new Producto(producto.id, producto.marca, producto.precio)
+                myCarrito.push(loadedProduct);
+            }
+
+        } else {
+            myCarrito.push(myProducto);
+            myCarrito.push(myProducto2);
+        }
+
+        let myParent = $(e.target).parent();
+        let children = myParent.children();
+        console.log(children[0].value);
+        for (const producto of myCarrito) {
+            if (producto.id == children[0].value) {
+                shopCart.agregarProducto(producto);
+            }
+        }
+
     });
 });
 

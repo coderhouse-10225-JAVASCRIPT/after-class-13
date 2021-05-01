@@ -85,9 +85,18 @@ let myListPersonas = $("#personas");
 
 let personasList = ["HOMERO", "MARGE", "LISA", "BART"];
 
+
+
 // Agrego a UL la lista de personas en el array
 for (const persona of personasList) {
-    myListPersonas.append("<li>" + persona + "</li>");
+    let myLi = $("<li>", {
+        text: persona
+    });
+
+    myLi.click( (events) => console.log("Li presionado"));
+ 
+    //myListPersonas.append("<li >" + persona + "</li>");
+    myListPersonas.append(myLi);
 }
 
 
@@ -101,7 +110,7 @@ let myTempObj2 = {id: 0, marca:"Pepsi", precio:120, inflacion: 1000 } //tramedat
 
 let myProducto2 = new Producto( myTempObj2.id, myTempObj2.marca, myTempObj2.precio );
 
-let myCarrito = [] // Que pasa si en lugar de usar un array uso objeto carrito?
+var myCarrito = [] // Que pasa si en lugar de usar un array uso objeto carrito?
 
 let storedCarrito = sessionStorage.getItem("carrito");
 

@@ -10,8 +10,14 @@ export default class Producto {
         return this.precio * 1.21;
     }
 
+    // Esto seria nuestra representacion visual del componente
     getHTML() {
-        return "<h1>" + this.marca + ": $" + this.precio +"</h1>"+"<img src='https://www.w3schools.com/images/lamp.jpg'>" + '<button class="btnProducto">Comprar</button>'; 
+        let html = `<input value="${this.id}" type=hidden>
+        <h1> ${this.marca} : $ ${this.precio} </h1>
+        <img src='https://www.w3schools.com/images/lamp.jpg'>
+        <button class="btnProducto">Comprar</button>`
+       // return "<input value="+ "<h1>" + this.marca + ": $" + this.precio +"</h1>"+"<img src='https://www.w3schools.com/images/lamp.jpg'>" + '<button class="btnProducto">Comprar</button>';
+       return html;
     }
     
 }
